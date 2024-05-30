@@ -46,6 +46,9 @@ const initialInquire = async () => {
             await git.clone(templateRepo, destDir, ['--depth', '1']);
             console.log('Template repository cloned successfully.');
 
+            // Remove the .git directory from the cloned template
+            fs.removeSync(path.join(destDir, '.git'));
+
             // Define design system specific directories
             const srcDesignSystemDir = path.join(destDir, 'src', `components-${designSystem !== 'material-ui' ? 'antd' : 'materialUi'}`);
             const commonHooksDir = path.join(destDir, 'src', 'hooks');
