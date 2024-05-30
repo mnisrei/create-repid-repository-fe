@@ -47,7 +47,7 @@ const initialInquire = async () => {
             console.log('Template repository cloned successfully.');
 
             // Define design system specific directories
-            const srcDesignSystemDir = path.join(destDir, 'src', `components-${designSystem}`);
+            const srcDesignSystemDir = path.join(destDir, 'src', `components-${designSystem !== 'material-ui' ? 'antd' : 'materialUi'}`);
             const commonHooksDir = path.join(destDir, 'src', 'hooks');
 
             // Create src/hooks directory if it doesn't exist
@@ -56,10 +56,10 @@ const initialInquire = async () => {
             }
 
             // Copy hooks folder from the selected design system to src/hooks
-            await fs.copy(path.join(srcDesignSystemDir, 'hooks'), commonHooksDir);
+            await fs.copy(path.join(srcDesignSystemDir, 'hook'), commonHooksDir);
 
             // Remove unnecessary design system folders
-            const otherDesignSystem = designSystem === 'material-ui' ? 'antd' : 'material-ui';
+            const otherDesignSystem = designSystem === 'material-ui' ? 'antd' : 'materialUi';
             fs.removeSync(path.join(destDir, 'src', `components-${otherDesignSystem}`));
 
             // Change directory to the destination folder
