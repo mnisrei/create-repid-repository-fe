@@ -9,10 +9,7 @@ import simpleGit from 'simple-git';
 import spawn from 'cross-spawn';
 import dotenv from 'dotenv';
 
-// Load environment variables
 dotenv.config();
-
-// Suppress MaxListenersExceededWarning
 events.EventEmitter.defaultMaxListeners = 20;
 
 // Get the directory name of the current module
@@ -61,7 +58,7 @@ const initialInquire = async () => {
         fs.removeSync(path.join(destDir, '.git'));
 
         // Define design system specific directories
-        const srcDesignSystemDir = path.join(destDir, 'src', `components-${designSystem === 'antd' ? 'antd' : designSystem === 'tailwind' ? 'tailwind' : 'materialUi'}`);
+        const srcDesignSystemDir = path.join(destDir, 'src', `components-${designSystem}`);
         const commonHooksDir = path.join(destDir, 'src', 'hooks');
         const componentsDir = path.join(destDir, 'src', 'components');
         const appFileSrc = path.join(srcDesignSystemDir, 'App.tsx');
@@ -88,16 +85,19 @@ const initialInquire = async () => {
 
         const copyItems = ['public', 'src'];
         for (const item of copyItems) {
-            fs.copySync(path.join(__dirname, item), path.join(destDir, item), {
-                filter: (src) => {
-                    return !src.includes('node_modules')
-                        && !src.includes('components-materialUi')
-                        && !src.includes('components-antd')
-                        && !src.includes('components-tailwind')
-                        && !src.endsWith('package.json')
-                        && !src.endsWith('index.js');
-                }
-            });
+            const srcPath = path.join(__dirname, item);
+            if (fs.existsSync(srcPath)) {
+                fs.copySync(srcPath, path.join(destDir, item), {
+                    filter: (src) => {
+                        return !src.includes('node_modules')
+                            && !src.includes('components-materialUi')
+                            && !src.includes('components-antd')
+                            && !src.includes('components-tailwind')
+                            && !src.endsWith('package.json')
+                            && !src.endsWith('index.js');
+                    }
+                });
+            }
         }
 
         await fs.copy(path.join(srcDesignSystemDir, 'hook'), commonHooksDir);

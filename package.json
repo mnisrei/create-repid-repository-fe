@@ -1,23 +1,22 @@
 {
-    "name": "create-repid-repository-fe",
-    "version": "1.0.2",
-    "description": "CLI tool to set up a project with either Material-UI or Ant Design",
-    "main": "index.js",
-    "type": "module",
-    "bin": {
-      "create-repid-repository-fe": "./index.js"
-    },
-    "scripts": {
-      "start": "node index.js"
-    },
-    "dependencies": {
-      "inquirer": "^8.1.2",
-      "fs-extra": "^10.0.0",
-      "cross-spawn": "^7.0.3",
-      "simple-git": "^2.37.0",
-      "dotenv": "^10.0.0"
-    },
-    "author": "Rahul",
-    "license": "MIT"
-  }
-  
+  "name": "create-repid-repository-fe",
+  "version": "1.0.3",
+  "description": "CLI tool to set up a project with either Material-UI or Ant Design",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "create-repid-repository-fe": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "inquirer": "^8.1.2",
+    "fs-extra": "^10.0.0",
+    "cross-spawn": "^7.0.3",
+    "simple-git": "^2.37.0",
+    "dotenv": "^10.0.0"
+  },
+  "author": "Rahul",
+  "license": "MIT"
+}
