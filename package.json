@@ -1,6 +1,6 @@
 {
   "name": "create-repid-repository-fe",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "CLI tool to set up a project with either Material-UI or Ant Design",
   "main": "index.js",
   "type": "module",
